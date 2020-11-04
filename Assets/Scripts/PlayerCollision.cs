@@ -10,8 +10,16 @@ public class PlayerCollision : MonoBehaviour
     [SerializeField] Material lowHealth = default;
     [SerializeField] GameObject playerParticle = default;
 
+    [SerializeField] AudioClip hit = default;
+    [SerializeField] AudioClip destroy = default;
+
     int lives = 3;
     int numberOfParticlesInExplosion = 3;
+
+    void Start()
+    {
+        GetComponent<Renderer>().material = fullHealth;
+    }
 
     void OnCollisionEnter(Collision collision)
     {
@@ -20,16 +28,16 @@ public class PlayerCollision : MonoBehaviour
             lives--;
             switch (lives)
             {
-                case 3:
-                    GetComponent<Renderer>().material = fullHealth;
-                    break;
                 case 2:
+                    GetComponent<AudioSource>().PlayOneShot(hit);
                     GetComponent<Renderer>().material = mediumHealth;
                     break;
                 case 1:
+                    GetComponent<AudioSource>().PlayOneShot(hit);
                     GetComponent<Renderer>().material = lowHealth;
                     break;
                 case 0:
+                    GetComponent<AudioSource>().PlayOneShot(destroy);
                     DestroyPlayer();
                     playerMovement.enabled = false;
                     break;
@@ -47,7 +55,7 @@ public class PlayerCollision : MonoBehaviour
 
     void DestroyPlayer()
     {
-        gameObject.SetActive(false);
+        GetComponent<Renderer>().enabled = false;
         for (int x = -numberOfParticlesInExplosion; x < numberOfParticlesInExplosion; x++)
         {
             for (int y = -numberOfParticlesInExplosion; y < numberOfParticlesInExplosion; y++)
