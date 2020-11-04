@@ -4184,6 +4184,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4620482877399466950, guid: 05e2722f2bf966141921fec79174b5e9, type: 3}
+      propertyPath: m_Text
+      value: LEVEL 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4620482877919738070, guid: 05e2722f2bf966141921fec79174b5e9, type: 3}
       propertyPath: playerTransform
       value: 
